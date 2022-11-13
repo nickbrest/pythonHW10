@@ -87,7 +87,9 @@ def process_alternative_step(message):
         elif message.text == 'Дополнительная операция':
             process_num1_step(message, user_result)
     except Exception:
-        bot.reply_to(message, "Ошибка!")
+        bot.reply_to(message, "Ошибка! Начните заново!")
+        msg = bot.send_message(message.chat.id, 'Введите первое число:')
+        bot.register_next_step_handler(msg, process_num1_step)
 
 
 def print_calculator():
